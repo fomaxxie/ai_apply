@@ -1,0 +1,32 @@
+<%= form_with model: @profile do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+  <%= f.label :desired_position %>
+  <%= f.text_field :desired_position %>
+  <%= f.label :years_of_experience %>
+  <%= f.text_field :years_of_experience %>
+  <%= f.label :technical_skills %>
+  <%= f.text_field :technical_skills %>
+  <%= f.label :soft_skills %>
+  <%= f.text_field :soft_skills %>
+  <%= f.label :details %>
+  <%= f.text_field :details %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <%= f.label :website %>
+  <%= f.text_field :website %>
+  <%= f.label :linkedin %>
+  <%= f.text_field :linkedin %>
+  <%= f.label :twitter %>
+  <%= f.text_field :twitter %>
+  <%= f.label :instagram %>
+  <%= f.text_field :instagram %>
+  <%= f.label :github %>
+  <%= f.text_field :github %>
+
+  <%= f.submit %>
+<% end %>

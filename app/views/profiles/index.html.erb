@@ -1,0 +1,9 @@
+<h2>my profiles</h2>
+
+<% @profiles.each do |profile| %>
+  <h3><%= profile.desired_position %></h3>
+  <%= link_to "edit", edit_profile_path(profile) %>
+  <%= link_to "delete", profile, data: { turbo_method: :delete } %>
+<% end %>
+
+<%= link_to 'Add profile', new_profile_path, class: 'btn btn-primary' %>

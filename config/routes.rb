@@ -4,4 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  root to: "pages#home"
+  get "/dashboard", to: "pages#dashboard", as: 'dashboard'
+  resources :profiles
+  #   resources :bios
+  #   resources :letters
+  # end
 end
