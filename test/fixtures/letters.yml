@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  format: MyString
+  job_description: MyText
+  letter_output: MyText
+  profile: one
+
+two:
+  format: MyString
+  job_description: MyText
+  letter_output: MyText
+  profile: two
