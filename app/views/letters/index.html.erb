@@ -1,8 +1,6 @@
 <h2>my letters</h2>
 
 <% @letters.each do |letter| %>
-  <h3><%= "#{letter.profile.desired_position} - #{letter.company_name}" %></h3>
+  <h3><%= "#{letter.profile.desired_position} - #{letter.company_name} - #{letter.created_at.strftime("%d/%m/%Y")}" %></h3>
   <%= link_to "delete", letter_path(letter), data: { turbo_method: :delete } %>
 <% end %>
-
-
