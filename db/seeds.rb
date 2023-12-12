@@ -3,6 +3,7 @@ require "faker"
 puts 'Destroying database ...'
 User.destroy_all
 Profile.destroy_all
+Letter.destroy_all
 
 puts 'Creating 20 fake users ...'
 
@@ -37,4 +38,19 @@ puts 'Creating 10 fake profiles with 10 random Users as Owners...'
     user_id: User.all.sample.id
   )
   profile.save!
+end
+
+puts 'Creating 5 fake letters with 10 random Profiles as Owners...'
+
+5.times do
+  next unless Profile.any?
+
+  letter = Letter.new(
+    format: "Standard (default)",
+    job_description: Faker::Lorem.paragraph,
+    letter_output: Faker::Lorem.paragraph,
+    company_name: Faker::Company.name,
+    profile_id: Profile.all.sample.id
+  )
+  letter.save!
 end

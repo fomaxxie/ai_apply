@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard", as: 'dashboard'
-  resources :profiles
-  #   resources :bios
-  #   resources :letters
-  # end
+  resources :profiles do
+    resources :letters, only: [:new, :create]
+    resources :bios
+  end
+
+  resources :letters, only: [:index, :show, :destroy]
 end

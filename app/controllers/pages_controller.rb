@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @profiles = Profile.all
+    @letters = Letter.all
   end
 end

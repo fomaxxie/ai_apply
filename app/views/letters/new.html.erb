@@ -1,0 +1,9 @@
+<h2>let's get you hired</h2>
+<%= form_with model: @letter, local: true do |form| %>
+  <%= form.label :profile_id, 'Choose a profile' %>
+  <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
+
+  <!-- Add other fields for the letter here -->
+
+  <%= form.submit 'Create Letter', class: 'btn btn-primary' %>
+<% end %>
