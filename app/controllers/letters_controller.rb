@@ -1,22 +1,20 @@
 class LettersController < ApplicationController
-  before_action :set_profile, only [:create]
+  before_action :set_profile, only: [:new, :create]
 
   def index
     @letters = Letter.all
   end
 
   def new
-    @letter = Letter.new
-    @profiles = Profile.all
+    @letter = Letter.new(profile: @profile)
   end
 
   def create
-    @profile = Profile.find(params[:letter][:profile_id])
-    @letter = @profile.letters.new(letter_params)
+    @letter = Letter.new(letter_params)
+    @letter.profile = @profile
     if @letter.save
       redirect_to dashboard_path, notice: 'Letter was successfully created.'
     else
-      @profiles = Profile.all # Make sure to pass the profiles back in case of re-render
       render :new, status: :unprocessable_entity
     end
   end
