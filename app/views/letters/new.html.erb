@@ -1,12 +1,12 @@
 <h2>let's get you hired</h2>
 <%= form_with model: @letter, local: true do |form| %>
-  <%= form.label :profile_id, 'Which profile fits position you are applying for the best?' %>
+  <%= form.label :profile_id, 'Which profile fits position you are applying for the best? *' %>
   <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
 
   <%= form.label :format, 'Choose a format' %>
   <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
 
-  <%= form.label :job_description, 'Copy and paste the full job description' %>
+  <%= form.label :job_description, 'Copy and paste the full job description *' %>
   <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
 
   <%= form.label :company_name, 'Company Name' %>

@@ -11,6 +11,7 @@ class LettersController < ApplicationController
 
   def create
     @letter = Letter.new(letter_params)
+    @letter.letter_output = @letter.ai_letter_output
     if @letter.save
       redirect_to dashboard_path, notice: 'Letter was successfully created.'
     else
@@ -22,12 +23,28 @@ class LettersController < ApplicationController
     @letter = Letter.find(params[:id])
   end
 
+  def update
+    @letter = Letter.find(params[:id])
+    if @letter.update(letter_params)
+      @letter.update(letter_output: @letter.ai_letter_output)
+      redirect_to @letter, notice: 'Letter was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @letter = Letter.find(params[:id])
     @letter.destroy
     redirect_to dashboard_path, notice: 'Letter was successfully deleted.'
   rescue ActiveRecord::RecordNotFound
     redirect_to dashboard_path, status: :see_other, alert: 'Letter not found.'
+  end
+
+  def regenerate
+    @letter = Letter.find(params[:id])
+    @letter.update(letter_output: @letter.ai_letter_output)
+    redirect_to @letter, notice: 'Letter was successfully regenerated.'
   end
 
   private

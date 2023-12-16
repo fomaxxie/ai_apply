@@ -1,1 +1,17 @@
 <h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
+
+<p style="font-weight: bold"> <%= @letter.profile.full_name %></p>
+<p><%= @letter.profile.email %><br>
+  <%= @letter.profile.phone_number.present? ? @letter.profile.phone_number : "" %><br>
+  <%= @letter.profile.location.present? ? "Based in #{@letter.profile.location}" : "" %></p>
+
+<p><%= @letter.profile.website.present? ? @letter.profile.website : "" %><br>
+<%= @letter.profile.linkedin.present? ? @letter.profile.linkedin : "" %><br>
+<%= @letter.profile.twitter.present? ? @letter.profile.twitter : "" %><br>
+<%= @letter.profile.instagram.present? ? @letter.profile.instagram : "" %><br>
+<%= @letter.profile.github.present? ? @letter.profile.github : "" %></p>
+
+<p><%= simple_format(@letter.letter_output) %></p>
+
+<%= link_to 'Back', dashboard_path %>
+<%= button_to 'Regenerate Letter', letter_path(@letter), method: :patch %>
