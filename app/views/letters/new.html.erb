@@ -1,9 +1,20 @@
 <h2>let's get you hired</h2>
 <%= form_with model: @letter, local: true do |form| %>
-  <%= form.label :profile_id, 'Choose a profile' %>
+  <%= form.label :profile_id, 'Which profile fits position you are applying for the best?' %>
   <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
 
-  <!-- Add other fields for the letter here -->
+  <%= form.label :format, 'Choose a format' %>
+  <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
 
-  <%= form.submit 'Create Letter', class: 'btn btn-primary' %>
+  <%= form.label :job_description, 'Copy and paste the full job description' %>
+  <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
+
+  <%= form.label :company_name, 'Company Name' %>
+  <%= form.text_field :company_name, placeholder: 'Enter company name here' %>
+
+  <%= form.submit 'Let the magic happen 🎩', class: 'btn btn-primary' %>
 <% end %>
+<p>Please, provide as much information as possible, including:
+company name, about the company, job requirements, name of the hiring manager</p>
+
+<%= link_to 'Back', dashboard_path %>

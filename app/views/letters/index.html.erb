@@ -2,7 +2,7 @@
 
 <% @letters.each do |letter| %>
   <h3><%= link_to letter.profile.desired_position, letter_path(letter) %> <%= "- #{letter.company_name} - #{letter.created_at.strftime("%d/%m/%Y")}" %></h3>
-  <%= link_to "delete", letter_path(letter), data: { turbo_method: :delete } %>
+  <%= link_to "delete", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 <% end %>
 
-<%= link_to "new letter", new_profile_letter_path(@profile) %>
+<%= link_to "new letter", new_letter_path %>

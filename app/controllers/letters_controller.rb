@@ -1,17 +1,16 @@
 class LettersController < ApplicationController
-  before_action :set_profile, only: [:new, :create]
-
   def index
     @letters = Letter.all
   end
 
   def new
-    @letter = Letter.new(profile: @profile)
+    @letter = Letter.new
+    @profiles = Profile.all
+    @formats = Letter::FORMATS
   end
 
   def create
     @letter = Letter.new(letter_params)
-    @letter.profile = @profile
     if @letter.save
       redirect_to dashboard_path, notice: 'Letter was successfully created.'
     else
@@ -32,10 +31,6 @@ class LettersController < ApplicationController
   end
 
   private
-
-  def set_profile
-    @profile = Profile.find(params[:profile_id])
-  end
 
   def letter_params
     params.require(:letter).permit(:profile_id, :format, :job_description, :letter_output)
