@@ -1,8 +1,7 @@
-<%= link_to "Cancel", dashboard_path, class: "btn btn-primary" %>
-
-<h2>let's make this personal</h2>
-
-<%= render "/shared/profile_form" %>
-
-<p> Please, note that you can add as much information as you feel comfortable with.
-However, the more information you provide, the more accurate letter you will get.</p>
+<div class="container new-profile-container">
+  <h2>let's make this personal</h2>
+  <%= render "/shared/profile_form" %>
+  <%= link_to "Cancel", dashboard_path, class: "btn-login" %>
+  <p> Please, note that you can add as much information as you feel comfortable with.
+  However, the more information you provide, the more accurate letter you will get.</p>
+</div>

@@ -1,8 +1,5 @@
-<h2>my letters</h2>
-
+<h1>my letters</h1>
 <% @letters.each do |letter| %>
-  <h3><%= link_to letter.profile.desired_position, letter_path(letter) %> <%= "- #{letter.company_name} - #{letter.created_at.strftime("%d/%m/%Y")}" %></h3>
-  <%= link_to "delete", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  <h3><%= link_to "#{letter.profile.desired_position} - #{letter.company_name} - #{letter.created_at.strftime("%d/%m/%Y")}", letter_path(letter) %></h3>
 <% end %>
-
-<%= link_to "new letter", new_letter_path %>
+<p><%= link_to 'Create Letter', new_letter_path, class: 'btn-add' %></p>

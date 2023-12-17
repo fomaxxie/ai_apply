@@ -23,6 +23,15 @@ h2 {
   color: $white-primary;
 }
 
+h3 {
+  font-family: 'Bai Jamjuree', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: $white-primary;
+}
+
 p {
   font-family: 'Inter', sans-serif;
   font-weight: 300;
@@ -45,4 +54,18 @@ li {
   line-height: 1.5;
   letter-spacing: 0.5px;
   color: $white-primary;
+}
+
+.field label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: $white-primary;
+  margin-bottom: 1em;
+}
+
+
+
+.field {
+  margin: 1em;
 }

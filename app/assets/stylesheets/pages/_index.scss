@@ -1,6 +1,13 @@
-//@import "home";
-//@import "dashboard";
+@import "home";
+@import "dashboard";
+@import "profiles";
+@import "letters";
+@import "bios";
 
 body {
   background-color: $black-secondary;
+}
+
+.container {
+  margin: 5rem 10rem;
 }

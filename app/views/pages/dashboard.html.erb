@@ -1,4 +1,10 @@
-<%= render template: "profiles/index" %>
-<%= render template: "letters/index" %>
-
-<%= link_to "back", root_path %>
+<div class="container dashboard-container">
+  <div class="dashboard-content">
+    <div class="dashboard-profiles">
+      <%= render template: "profiles/index" %>
+    </div>
+    <div class="dashboard-letters">
+      <%= render template: "letters/index" %>
+    </div>
+  </div>
+</div>

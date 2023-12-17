@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container home-container">
   <h1>I need help writing</h1>
   <% if Profile.count == 0 %>
     <h2><%= link_to 'cover letter', new_profile_path %></h2>
   <% else %>
     <h2><%= link_to 'cover letter', new_letter_path %></h2>
   <% end %>
-  <h2>bio summary</h2> <%# if profiles = 0 go create_profile else go to create bio  %>
+  <h2>bio summary</h2>
 </div>

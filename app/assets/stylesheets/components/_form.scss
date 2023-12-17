@@ -1,7 +1,43 @@
+.profile-form {
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-form input[type="text"],
+.profile-form textarea {
+  background-color: $black-primary;
+  color: $white-primary;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  padding: 6px;
+  width: 36rem;
+}
+
+.profile-form input[type="text"]::placeholder,
+.profile-form textarea::placeholder {
+  font-family: 'Inter', sans-serif;
+}
+
 .field {
   margin: 1em 0 1em 0;
 }
 
 .field label {
   margin-bottom: 1em;
+  font-family: 'Inter', sans-serif;
+}
+
+.field input[type="submit"] {
+  margin-bottom: 1em;
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-details {
+  grid-column: 1;
+}
+
+.contact-details, .profile-links {
+  grid-column: 2;
 }

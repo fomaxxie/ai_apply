@@ -1,9 +1,7 @@
-<h2>my profiles</h2>
+<h1>my profiles</h1>
 
 <% @profiles.each do |profile| %>
-  <h3><%= profile.desired_position %></h3>
-  <%= link_to "edit", edit_profile_path(profile) %>
-  <%= link_to "delete", profile, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  <h3><%= link_to profile.desired_position, edit_profile_path(profile) %></h3>
 <% end %>
 
-<%= link_to 'Add profile', new_profile_path, class: 'btn btn-primary' %>
+<p><%= link_to 'Add profile', new_profile_path, class: 'btn-add' %></p>

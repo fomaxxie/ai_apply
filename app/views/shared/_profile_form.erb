@@ -1,32 +1,44 @@
-<%= form_with model: @profile do |f| %>
-  <%= f.label :full_name, 'Full Name *' %>
-  <%= f.text_field :full_name %>
-  <%= f.label :desired_position, 'Desired Position *' %>
-  <%= f.text_field :desired_position, required: true %>
-  <%= f.label :years_of_experience, 'Years of Experience *' %>
-  <%= f.text_field :years_of_experience %>
-  <%= f.label :technical_skills %>
-  <%= f.text_field :technical_skills %>
-  <%= f.label :soft_skills %>
-  <%= f.text_field :soft_skills %>
-  <%= f.label :details %>
-  <%= f.text_area :details %>
-  <%= f.label :email, 'Email *' %>
-  <%= f.text_field :email %>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_number %>
-  <%= f.label :location %>
-  <%= f.text_field :location %>
-  <%= f.label :website %>
-  <%= f.text_field :website %>
-  <%= f.label :linkedin %>
-  <%= f.text_field :linkedin %>
-  <%= f.label :twitter %>
-  <%= f.text_field :twitter %>
-  <%= f.label :instagram %>
-  <%= f.text_field :instagram %>
-  <%= f.label :github %>
-  <%= f.text_field :github %>
+<div class="form-container">
+  <%= form_with model: @profile, html: { class: 'profile-form' } do |f| %>
+    <div class="profile-details">
+      <p><%= f.label :full_name, 'Your full name' %></p>
+      <%= f.text_field :full_name, required: true, placeholder: "John Doe" %>
+      <p><%= f.label :desired_position, 'Your desired position' %></p>
+      <%= f.text_field :desired_position, required: true, placeholder: "Web Developer" %>
+      <p><%= f.label :years_of_experience, 'Your years of experience' %></p>
+      <%= f.text_field :years_of_experience, placeholder: "5" %>
+      <p><%= f.label :technical_skills, 'Add relevant technical skills (optional)' %></p>
+      <%= f.text_field :technical_skill, placeholder: "Python, HTML, CSS, JavaScript" %>
+      <p><%= f.label :soft_skills, 'Add relevant soft skills (optional)' %></p>
+      <%= f.text_field :soft_skills, placeholder: "Coordination, flexibility" %>
+      <p><%= f.label :details, 'Add more details about yourself which might be relevant. The more details the better.' %></p>
+      <%= f.text_area :details, placeholder: "I am a self-learner who has been passionate about web development for the past 2 years. I have developed the apps like... ", rows: 12 %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <div class="contact-details">
+      <div class="contact-details">
+        <p><%= f.label :phone_number, 'Phone number' %></p>
+        <%= f.text_field :phone_number, placeholder: "Phone number" %>
+        <p><%= f.label :email, 'Email' %></p>
+        <%= f.text_field :email, placeholder: "email" %>
+        <p><%= f.label :location, 'Location' %></p>
+        <%= f.text_field :location, placeholder: "Location" %>
+      </div>
+
+      <div class="profile-links">
+        <p><%= f.label :website, 'Website (optional)' %></p>
+        <%= f.text_field :website %>
+        <p><%= f.label :linkedin, 'LinkedIn (optional)' %></p>
+        <%= f.text_field :linkedin %>
+        <p><%= f.label :twitter, 'Twitter (X) (optional)' %></p>
+        <%= f.text_field :twitter %>
+        <p><%= f.label :instagram, 'Instagram (optional)' %></p>
+        <%= f.text_field :instagram %>
+        <p><%= f.label :github, 'GitHub (optional)' %></p>
+        <%= f.text_field :github %>
+      </div>
+    <div>
+      <p><%= f.button :submit, value: "Submit", class: "btn-signup" %></p>
+    </div>
+  <% end %>
+<div>
