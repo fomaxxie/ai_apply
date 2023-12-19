@@ -1,7 +1,7 @@
 <div class="container">
   <h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
   <div class="letter-container" id="data-clipboard-text">
-    <p style="font-weight: bold"> <%= @letter.profile.full_name %></p>
+    <p style = "font-weight: bold;"> <%= @letter.profile.full_name %></p>
     <p><%= @letter.profile.email %><br>
     <%= @letter.profile.phone_number.present? ? "#{@letter.profile.phone_number}<br>".html_safe : "" %>
     <%= @letter.profile.location.present? ? "Based in #{@letter.profile.location}<br>".html_safe : "" %></p>
@@ -67,12 +67,17 @@
       const jsPDF = window.jspdf.jsPDF;
       const doc = new jsPDF();
 
-      doc.html(contentToDownload.innerHTML, {
+      doc.html(contentToDownload, {
+        html2canvas: {
+        scale: 0.1, // Experiment with scaling
+        letterRendering: true,
+        },
         callback: function (doc) {
           doc.save('cover_letter.pdf');
         },
-        x: 50,
-        y: 10,
+        x: 0,
+        y: 0,
+        windowWidth: contentToDownload.scrollWidth, // Adjust the rendering width if needed
       });
     });
   });
