@@ -8,7 +8,7 @@
       <p><%= form.label :format, 'Choose a format (optional)' %></p>
       <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
 
-      <p><%= form.label :job_description, 'Copy and paste the full job description *' %></p>
+      <p><%= form.label :job_description, 'Copy and paste the full job description' %></p>
       <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
 
       <p><%= form.label :company_name, 'Company Name' %></p>
@@ -24,3 +24,21 @@
   </div>
 <div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.letter-form');
+
+    form.addEventListener('submit', function (event) {
+      const requiredInputs = ['job_description', 'company_name', 'profile_id'];
+
+      for (let i = 0; i < requiredInputs.length; i++) {
+        const input = form.querySelector(`[name="letter[${requiredInputs[i]}]"]`);
+        if (!input.value) {
+          event.preventDefault();
+          alert('Please fill all the required fields');
+          return;
+        }
+      }
+    });
+  });
+</script>

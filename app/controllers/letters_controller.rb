@@ -50,6 +50,6 @@ class LettersController < ApplicationController
   private
 
   def letter_params
-    params.require(:letter).permit(:profile_id, :format, :job_description, :letter_output)
+    params.require(:letter).permit(:profile_id, :format, :job_description, :company_name, :letter_output)
   end
 end

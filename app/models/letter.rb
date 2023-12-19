@@ -4,7 +4,6 @@ class Letter < ApplicationRecord
   FORMATS = ['short', 'standard (default)', 'long'].freeze
 
   validates :job_description, presence: true
-  validates :profile_id, presence: true
   validates :format, presence: true, inclusion: { in: FORMATS }
   validates :company_name, presence: true
 
