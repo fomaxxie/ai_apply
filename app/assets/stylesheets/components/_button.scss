@@ -6,6 +6,7 @@
   text-decoration: none;
   font-size: 16px;;
   display: inline-block;
+
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -20,14 +21,16 @@
   padding: 10px 20px;
   border-radius: 7px;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
 
   display: inline-block;
   border: none;
   text-decoration: none;
+
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
 
   &:hover {
     background-color: darken($white-primary, 10%);
