@@ -1,20 +1,26 @@
-<h2>let's get you hired</h2>
-<%= form_with model: @letter, local: true do |form| %>
-  <%= form.label :profile_id, 'Which profile fits position you are applying for the best? *' %>
-  <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
+<div class="container">
+  <h2>let's get you hired</h2>
+  <div class="form-container">
+    <%= form_with model: @letter, local: true, html: { class: "letter-form" } do |form| %>
+      <p><%= form.label :profile_id, 'Which profile fits position you are applying for the best?' %></p>
+      <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
 
-  <%= form.label :format, 'Choose a format' %>
-  <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
+      <p><%= form.label :format, 'Choose a format (optional)' %></p>
+      <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
 
-  <%= form.label :job_description, 'Copy and paste the full job description *' %>
-  <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
+      <p><%= form.label :job_description, 'Copy and paste the full job description *' %></p>
+      <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
 
-  <%= form.label :company_name, 'Company Name' %>
-  <%= form.text_field :company_name, placeholder: 'Enter company name here' %>
+      <p><%= form.label :company_name, 'Company Name' %></p>
+      <%= form.text_field :company_name, placeholder: 'Enter company name here' %>
 
-  <%= form.submit 'Let the magic happen 🎩', class: 'btn btn-primary' %>
-<% end %>
-<p>Please, provide as much information as possible, including:
-company name, about the company, job requirements, name of the hiring manager</p>
+      <div class="form-btns">
+        <p><%= link_to 'Back', dashboard_path, class:"btn-login" %></p>
+        <%= form.submit 'Let the magic happen 🎩', class: 'btn-signup' %>
+      </div>
+    <% end %>
+    <p>Please, provide as much information as possible, including:
+    company name, about the company, job requirements, name of the hiring manager</p>
+  </div>
+<div>
 
-<%= link_to 'Back', dashboard_path %>

@@ -1,0 +1,22 @@
+.form-container {
+  width: 33.33%;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.letter-container {
+  background-color: $black-primary;
+  color: $white-primary;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  padding: 1em;
+  width: 100%;
+}
+
+.letter-buttons {
+  display: flex;
+  gap: 1em;
+  align-items: left;
+  margin-top: 1em;
+}

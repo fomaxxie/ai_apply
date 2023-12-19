@@ -5,6 +5,8 @@ class Letter < ApplicationRecord
 
   validates :job_description, presence: true
   validates :profile_id, presence: true
+  validates :format, presence: true, inclusion: { in: FORMATS }
+  validates :company_name, presence: true
 
 
   def ai_letter_output
@@ -22,15 +24,14 @@ class Letter < ApplicationRecord
     Now considering information about me and the job description below, help me write a perfect cover letter.
 
     Very importantly, just give a generated letter without any headers like name, email, address, date, etc, don't add any additional text like 'here is your text', etc.
-    The output should be very straightforward, just a letter starting with either 'Dear' name of hiring manager if exists or just 'Dear Sir or Madam' if not.
+    The output should be straightforward letter starting with either 'Dear' name of hiring manager if exists or just 'Dear Sir or Madam' if not.
 
     Here is a job description you should consider: #{job_description}
     The format of the letter should be #{format == "standard (default)" ? "standard, which means it should be long
     enough to fill A4 format" : "#{format}"}.
 
     You can consider adding the following information about me:
-    #{profile.full_name.present? ? "full name: #{profile.full_name}" : ""}
-    #{profile.email.present? ? "email: #{profile.email}" : ""}"
+    #{profile.full_name.present? ? "full name: #{profile.full_name}" : ""}"
 
 
     client = OpenAI::Client.new

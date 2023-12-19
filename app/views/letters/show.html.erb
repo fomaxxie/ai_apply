@@ -1,18 +1,79 @@
-<h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
+<div class="container">
+  <h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
+  <div class="letter-container" id="data-clipboard-text">
+    <p style="font-weight: bold"> <%= @letter.profile.full_name %></p>
+    <p><%= @letter.profile.email %><br>
+    <%= @letter.profile.phone_number.present? ? "#{@letter.profile.phone_number}<br>".html_safe : "" %>
+    <%= @letter.profile.location.present? ? "Based in #{@letter.profile.location}<br>".html_safe : "" %></p>
 
-<p style="font-weight: bold"> <%= @letter.profile.full_name %></p>
-<p><%= @letter.profile.email %><br>
-  <%= @letter.profile.phone_number.present? ? @letter.profile.phone_number : "" %><br>
-  <%= @letter.profile.location.present? ? "Based in #{@letter.profile.location}" : "" %></p>
+    <p><%= @letter.profile.website.present? ? "#{@letter.profile.website}<br>".html_safe : "" %>
+    <%= @letter.profile.linkedin.present? ? "#{@letter.profile.linkedin}<br>".html_safe : "" %>
+    <%= @letter.profile.twitter.present? ? "#{@letter.profile.twitter}<br>".html_safe : "" %>
+    <%= @letter.profile.instagram.present? ? "#{@letter.profile.instagram}<br>".html_safe : "" %>
+    <%= @letter.profile.github.present? ? "#{@letter.profile.github}<br>".html_safe : "" %></p>
+    <br>
+    <p><%= simple_format(@letter.letter_output) %></p>
+  </div>
 
-<p><%= @letter.profile.website.present? ? @letter.profile.website : "" %><br>
-<%= @letter.profile.linkedin.present? ? @letter.profile.linkedin : "" %><br>
-<%= @letter.profile.twitter.present? ? @letter.profile.twitter : "" %><br>
-<%= @letter.profile.instagram.present? ? @letter.profile.instagram : "" %><br>
-<%= @letter.profile.github.present? ? @letter.profile.github : "" %></p>
+  <div class="letter-buttons">
+    <p><%= link_to 'Save and Go Back', dashboard_path, class:"btn-signup" %></p>
+    <p><%= link_to 'Regenerate Letter', letter_path(@letter), class:"btn-login", method: :patch %></p>
+    <p><button id="copy-button" class="btn-login">Copy to Clipboard</button></p>
+    <p><%= link_to "Delete", letter_path(@letter), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
+    <p><button id="download-pdf" class="btn-login">Download as PDF</button></p>
+  </div>
+</div>
 
-<p><%= simple_format(@letter.letter_output) %></p>
+<!--Copy to clipboard JS script-->
 
-<%= link_to 'Back', dashboard_path %>
-<%= button_to 'Regenerate Letter', letter_path(@letter), method: :patch %>
-<%= link_to "delete", letter_path(@letter), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'letter-delete' %>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const copyButton = document.getElementById('copy-button');
+    const contentToCopy = document.getElementById('data-clipboard-text');
+
+    copyButton.addEventListener('click', function () {
+      const range = document.createRange();
+      range.selectNode(contentToCopy);
+      window.getSelection().removeAllRanges(); // Clear current selection
+      window.getSelection().addRange(range); // Select the text content
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          alert('Text copied to clipboard!');
+        } else {
+          alert('Failed to copy text.');
+        }
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+
+      window.getSelection().removeAllRanges(); // Remove selection after copy
+    });
+  });
+</script>
+
+<!--Download PDF-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const downloadButton = document.getElementById('download-pdf');
+    const contentToDownload = document.getElementById('data-clipboard-text');
+
+    downloadButton.addEventListener('click', function () {
+      const jsPDF = window.jspdf.jsPDF;
+      const doc = new jsPDF();
+
+      doc.html(contentToDownload.innerHTML, {
+        callback: function (doc) {
+          doc.save('cover_letter.pdf');
+        },
+        x: 50,
+        y: 10,
+      });
+    });
+  });
+</script>

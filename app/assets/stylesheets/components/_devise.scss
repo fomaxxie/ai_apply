@@ -1,0 +1,38 @@
+.field input[type="email"],
+.field input[type="password"] {
+  background-color: $black-primary;
+  color: $white-primary;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  padding: 6px;
+  width: 24rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.field input[type="checkbox"] {
+  background-color: $black-primary;
+  color: $white-primary;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+}
+
+.actions input[type="submit"] {
+  background-color: $white-primary;
+  color: $black-primary;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-signup {
+  background-image: $gradient-primary;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}

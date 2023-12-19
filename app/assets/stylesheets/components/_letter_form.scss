@@ -1,0 +1,50 @@
+/* Letter Form CSS */
+.letter-form {
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.letter-form label {
+  display: block;
+  color: $white-primary
+}
+
+.letter-form input[type="text"],
+.letter-form select,
+.letter-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  background-color: $black-primary;
+  color: $white-primary;
+  font-family: 'Inter', sans-serif;
+}
+
+.letter-form input[type="text"]::placeholder,
+.letter-form textarea::placeholder {
+  color: $white-secondary;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+}
+
+/* Adjustments for smaller devices */
+@media (max-width: 768px) {
+  .letter-form {
+    grid-gap: 1rem;
+  }
+
+  .letter-form input[type="text"],
+  .letter-form select,
+  .letter-form textarea {
+    width: 100%;
+  }
+}
