@@ -1,5 +1,8 @@
 <div class="container">
-  <h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
+  <div class="letter-header">
+    <button><%= link_to '<i class="fas fa-arrow-left"></i>'.html_safe, dashboard_path, class:"btn-login" %></button>
+    <h2><%= @letter.profile.desired_position %> - <%= @letter.company_name %></h2>
+  </div>
   <div class="letter-container" id="data-clipboard-text">
     <p style = "font-weight: bold;"> <%= @letter.profile.full_name %></p>
     <p><%= @letter.profile.email %><br>
@@ -16,11 +19,11 @@
   </div>
 
   <div class="letter-buttons">
-    <p><%= link_to 'Save and Go Back', dashboard_path, class:"btn-signup" %></p>
-    <p><%= link_to 'Regenerate Letter', letter_path(@letter), class:"btn-login", method: :patch %></p>
-    <p><button id="copy-button" class="btn-login">Copy to Clipboard</button></p>
-    <p><%= link_to "Delete", letter_path(@letter), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
-    <p><button id="download-pdf" class="btn-login">Download as PDF</button></p>
+    <button><%= link_to 'Save Letter', dashboard_path, class:"btn-signup" %></button>
+    <button><%= link_to 'Regenerate Letter', edit_letter_path(@letter), class:"btn-login" %></button>
+    <button><%= link_to "Delete", letter_path(@letter), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></button>
+    <button id="copy-button" class="btn-login">Copy to Clipboard</button>
+    <button id="download-pdf" class="btn-login">Download as PDF</button>
   </div>
 </div>
 

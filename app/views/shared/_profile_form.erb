@@ -37,8 +37,13 @@
         <p><%= f.label :github, 'GitHub (optional)' %></p>
         <%= f.text_field :github %>
       </div>
-    <div>
+    </div>
+    <div class="profile-buttons">
       <p><%= f.button :submit, value: "Submit", class: "btn-signup" %></p>
+      <button><%= link_to "Cancel", dashboard_path, class: "btn-login" %></button>
+      <% if action_name == 'edit' %>
+        <button><%= link_to "Delete Profile", @profile, class: "btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></button>
+      <% end %>
     </div>
   <% end %>
 <div>

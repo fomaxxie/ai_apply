@@ -1,8 +1,12 @@
-.form-container {
-  width: 33.33%;
+.letter-form-container {
   margin: 0 auto;
-  padding: 1em;
   box-sizing: border-box;
+}
+
+.letter-header {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
 }
 
 .letter-container {
@@ -18,5 +22,5 @@
   display: flex;
   gap: 1em;
   align-items: left;
-  margin-top: 1em;
+  margin-top: 2em;
 }

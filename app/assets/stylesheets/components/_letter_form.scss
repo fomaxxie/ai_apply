@@ -6,6 +6,11 @@
   font-family: 'Inter', sans-serif;
 }
 
+.letter-form-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
 .letter-form label {
   display: block;
   color: $white-primary
@@ -21,6 +26,7 @@
   background-color: $black-primary;
   color: $white-primary;
   font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .letter-form input[type="text"]::placeholder,
@@ -31,7 +37,7 @@
 
 .form-btns {
   display: flex;
-  justify-content: space-between;
+  gap: 2em;
   align-items: center;
   margin-top: 1em;
 }

@@ -1,6 +1,9 @@
 .footer-container {
   margin: auto 1rem;
-  margin-top: 24rem;
+
+  &.home-page {
+    margin-top: 24rem;
+  }
 }
 
 .footer-line {

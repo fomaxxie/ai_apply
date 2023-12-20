@@ -1,9 +1,7 @@
-// profile form CSS:
-
 .profile-form {
   display: grid;
   margin: 0 auto;
-  grid-gap: 5rem;
+  grid-gap: 0.5rem;
   font-family: 'Inter', sans-serif;
 }
 
@@ -31,15 +29,16 @@
   font-family: 'Inter', sans-serif;
 }
 
-.field input[type="submit"] {
-  margin-bottom: 1em;
-  font-family: 'Inter', sans-serif;
-}
-
 .profile-details {
   grid-column: 1;
 }
 
 .contact-details, .profile-links {
   grid-column: 2;
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 1em;
+  margin: 1em 0;
 }

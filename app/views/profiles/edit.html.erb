@@ -1,4 +1,7 @@
-<h2>update <%= @profile.desired_position %> profile</h2>
-<%= render "/shared/profile_form" %>
-<%= link_to "Cancel", dashboard_path, class: "btn btn-primary" %>
-<%= link_to "Delete Profile", @profile, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="letter-header">
+    <button><%= link_to '<i class="fas fa-arrow-left"></i>'.html_safe, dashboard_path, class: "btn-login" %></button>
+    <h2>update <%= @profile.desired_position %> profile</h2>
+  </div>
+  <%= render "/shared/profile_form" %>
+</div>

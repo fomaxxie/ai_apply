@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/terms", to: "pages#terms", as: 'terms'
   get "/privacy", to: "pages#privacy", as: 'privacy'
 
-  resources :profiles
-  resources :letters, only: [:new, :create, :index, :show,:destroy]
+  resources :profiles, except: [:index]
+  resources :letters, except: [:index]
   resources :bios
 end
