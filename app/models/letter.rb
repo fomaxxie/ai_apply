@@ -46,6 +46,7 @@ class Letter < ApplicationRecord
   end
 
   private
+  
   def seniority
     if profile.years_of_experience < 3
       "junior"

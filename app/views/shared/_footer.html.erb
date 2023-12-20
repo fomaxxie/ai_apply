@@ -1,10 +1,18 @@
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-contents">
-      <p>&copy; <%= Time.now.year %> AiApply. All Rights Reserved.</p>
-      <ul class="footer-links">
+<footer>
+  <div class="footer-container">
+  <hr class="footer-line" />
+    <div class="footer-content">
+      <div class="footer-logo">
+        <%= image_tag "logos/logo.png" %>
+        <h4>AiApply ©. Simplify your job search</h4>
+      </div>
 
-      </ul>
+      <div class="footer-links">
+        <p><%= link_to 'About', about_path %></p>
+        <p><%= link_to 'Contact', contact_path %></p>
+        <p><%= link_to 'Terms & Conditions', terms_path %></p>
+        <p><%= link_to 'Privacy', privacy_path %></p>
+      </div>
     </div>
   </div>
 </footer>
