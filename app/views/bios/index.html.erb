@@ -1,0 +1,5 @@
+<h1>my bios</h1>
+<p><%= link_to 'Create Bio', new_bio_path, class: 'btn-add' %></p>
+<% @bios.reverse_each do |bio| %>
+  <h3><%= link_to "#{bio.profile.desired_position} - #{bio.created_at.strftime("%d/%m/%Y")}", bio_path(bio) %></h3>
+<% end %>

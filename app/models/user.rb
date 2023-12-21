@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :profiles
+  has_many :letters, through: :profiles
+  has_many :bios, through: :profiles
 end

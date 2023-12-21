@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="letter-header">
+    <button><%= link_to '<i class="fas fa-arrow-left"></i>'.html_safe, dashboard_path, class:"btn-login" %></button>
+    <h2>let's summarize it</h2>
+  </div>
+  <div class="bio-form-container">
+    <%= form_with model: @bio, html: { class: 'bio-form', multipart: true } do |f| %>
+      <div>
+        <p><%= f.label :profile_id, 'Which profile fits position you are applying for the best?' %></p>
+        <%= f.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
+      </div>
+
+      <div class="drag-drop-container">
+        <input type="file" id="pdf-upload" name="bio[cv_content]" accept="application/pdf" hidden>
+        <label for="pdf-upload" class="drag-drop-label">
+          <div class="drag-drop-text">Drop your CV in pdf like it's hot</div>
+        </label>
+      </div>
+
+      <div>
+        <p><%= f.label :details, "Anything else you'd like to share about yourself?" %></p>
+        <%= f.text_area :details, rows: 5, placeholder: 'Passionate about tennis, pottery, and puppies' %>
+      </div>
+
+      <%= f.submit 'Submit', class: 'btn-signup' %>
+    <% end %>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var dropArea = document.getElementById('pdf-upload');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false)
+    });
+
+    function preventDefaults (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      var dt = e.dataTransfer;
+      var files = dt.files;
+
+      handleFiles(files);
+    }
+
+    function handleFiles(files) {
+      ([...files]).forEach(uploadFile);
+    }
+
+    function uploadFile(file) {
+      var input = document.getElementById('pdf-upload');
+      input.files = file;
+    }
+  });
+</script>

@@ -53,4 +53,16 @@ puts 'Creating 5 fake letters with 10 random Profiles as Owners...'
     profile_id: Profile.all.sample.id
   )
   letter.save!
+
+  2.times do
+    next unless Profile.any?
+
+    bio = Bio.new(
+      details: Faker::Lorem.paragraph,
+      cv_content: Faker::Lorem.paragraph,
+      bio_output: Faker::Lorem.paragraph,
+      profile_id: Profile.all.sample.id
+    )
+    bio.save!
+  end
 end

@@ -1,0 +1,40 @@
+.drag-drop-container {
+  border: 0.5px dashed $white-secondary;
+  border-radius: 8px;
+  text-align: center;
+  padding: 40px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.drag-drop-container:hover {
+  border-color:$white-secondary
+}
+
+.drag-drop-text {
+  color: gray;
+  font-family: 'bai Jamjuree', sans-serif;
+}
+
+.bio-form-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bio-form label {
+  display: block;
+  color: $white-primary
+}
+
+.bio-form input[type="text"],
+.bio-form select,
+.bio-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  background-color: $black-primary;
+  color: $white-primary;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
