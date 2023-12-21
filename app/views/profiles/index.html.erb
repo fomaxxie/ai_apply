@@ -1,7 +1,6 @@
 <h1>my profiles</h1>
+<p><%= link_to 'Add profile', new_profile_path, class: 'btn-add' %></p>
 
-<% @profiles.each do |profile| %>
+<% @profiles.reverse_each do |profile| %>
   <h3><%= link_to profile.desired_position, edit_profile_path(profile) %></h3>
 <% end %>
-
-<p><%= link_to 'Add profile', new_profile_path, class: 'btn-add' %></p>

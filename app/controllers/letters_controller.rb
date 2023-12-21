@@ -14,7 +14,7 @@ class LettersController < ApplicationController
     @letter = Letter.new(letter_params)
     @letter.letter_output = @letter.ai_letter_output
     if @letter.save
-      redirect_to letters_path(@letter), notice: 'Letter was successfully created.'
+      redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
