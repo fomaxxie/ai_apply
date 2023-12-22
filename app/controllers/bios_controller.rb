@@ -13,11 +13,11 @@ class BiosController < ApplicationController
   def create
     @bio = Bio.new(bio_params)
 
-    @bio.bio_output = @bio.ai_bio_output
-
     if params[:bio][:cv_content].present?
       @bio.cv_content = extract_text_from_pdf(params[:bio][:cv_content])
     end
+
+    @bio.bio_output = @bio.ai_bio_output
 
     if @bio.save
       redirect_to bio_path(@bio), notice: 'Bio was successfully created.'
@@ -26,18 +26,14 @@ class BiosController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
   def update
-    @bio.bio_output = @bio.ai_bio_output
+    @bio = Bio.find(params[:id])
 
     if params[:bio][:cv_content].present?
       @bio.cv_content = extract_text_from_pdf(params[:bio][:cv_content])
     end
+
+    @bio.bio_output = @bio.ai_bio_output
 
     if @bio.update(bio_params)
       redirect_to @bio, notice: 'Bio was successfully updated.'
@@ -59,7 +55,7 @@ class BiosController < ApplicationController
     params.require(:bio).permit(:profile_id, :details, :cv_content, :bio_output)
   end
 
-  def set_bios
+  def set_bio
     @bio = Bio.find(params[:id])
   end
 

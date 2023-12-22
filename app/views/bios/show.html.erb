@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="letter-header">
+    <button><%= link_to '<i class="fas fa-arrow-left"></i>'.html_safe, dashboard_path, class:"btn-login" %></button>
+    <h2><%= @bio.profile.full_name %>'s bio for <%= @bio.profile.desired_position %> position</h2>
+  </div>
+
+  <div class="letter-container" id="data-clipboard-text">
+    <p><%= @bio.bio_output %></p>
+  </div>
+
+  <div class="letter-buttons">
+    <button><%= link_to 'Save Bio', dashboard_path, class:"btn-signup" %></button>
+    <button><%= link_to "Delete", bio_path(@bio), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></button>
+    <button id="copy-button" class="btn-login">Copy to Clipboard</button>
+  </div>
+</div>
+
+<!--Copy to clipboard JS script-->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const copyButton = document.getElementById('copy-button');
+    const contentToCopy = document.getElementById('data-clipboard-text');
+
+    copyButton.addEventListener('click', function () {
+      const range = document.createRange();
+      range.selectNode(contentToCopy);
+      window.getSelection().removeAllRanges(); // Clear current selection
+      window.getSelection().addRange(range); // Select the text content
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          alert('Text copied to clipboard!');
+        } else {
+          alert('Failed to copy text.');
+        }
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+
+      window.getSelection().removeAllRanges(); // Remove selection after copy
+    });
+  });
+</script>

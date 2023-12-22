@@ -5,5 +5,9 @@
   <% else %>
     <h2><%= link_to 'cover letter', new_letter_path %></h2>
   <% end %>
-  <h2>bio summary (coming soon)</h2>
+  <% if Profile.count == 0 %>
+    <h2><%= link_to 'bio summary', new_profile_path %></h2>
+  <% else %>
+    <h2><%= link_to 'bio summary', new_bio_path %></h2>
+  <% end %>
 </div>
