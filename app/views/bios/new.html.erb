@@ -6,7 +6,7 @@
   <div class="bio-form-container">
     <%= form_with model: @bio, html: { class: 'bio-form', multipart: true } do |f| %>
       <div>
-        <p><%= f.label :profile_id, 'Which profile fits position you are applying for the best?' %></p>
+        <%= f.label :profile_id, 'Which profile fits position you are applying for the best?' %>
         <%= f.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
       </div>
 
@@ -18,11 +18,11 @@
       </div>
 
       <div>
-        <p><%= f.label :details, "Anything else you'd like to share about yourself?" %></p>
+        <%= f.label :details, "Anything else you'd like to share about yourself?" %>
         <%= f.text_area :details, rows: 5, placeholder: 'Passionate about tennis, pottery, and puppies' %>
       </div>
 
-      <%= f.submit 'Submit', class: 'btn-signup' %>
+      <%= f.submit 'Submit', class: 'btn-signup', style: 'margin-top: 1em;' %>
     <% end %>
   </div>
 
@@ -73,7 +73,6 @@
       if (response.ok && response.redirected) {
         window.location.href = response.url;
       } else {
-        // Handle the case where the submission wasn't successful
         alert('There was an error submitting the form.');
       }
     });

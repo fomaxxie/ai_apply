@@ -13,7 +13,9 @@
 
 .letter-form label {
   display: block;
-  color: $white-primary
+  color: $white-primary;
+  font-family: 'bai Jamjuree', sans-serif;
+  padding: 0.8em 0;
 }
 
 .letter-form input[type="text"],
@@ -31,7 +33,6 @@
 
 .letter-form input[type="text"]::placeholder,
 .letter-form textarea::placeholder {
-  color: $white-secondary;
   font-family: 'Inter', sans-serif;
 }
 

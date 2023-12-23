@@ -14,7 +14,7 @@
   <% if user_signed_in? %>
   <div class="user_email">
     <p><%= current_user.email %><p>
-    <p><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn-login' %></p>
+    <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-login" %></button>
   </div>
   <% end %>
 </div>

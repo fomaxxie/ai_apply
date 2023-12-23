@@ -2,19 +2,19 @@
   <%= form_with model: @letter, local: true, html: { class: "letter-form" } do |form| %>
     <div class="letter-form-dropdown">
       <div>
-        <p><%= form.label :profile_id, 'Which profile fits position you are applying for the best?' %></p>
+        <%= form.label :profile_id, 'Which profile fits position you are applying for the best?' %>
         <%= form.collection_select :profile_id, @profiles, :id, :desired_position, prompt: "Select a Profile" %>
       </div>
       <div>
-        <p><%= form.label :format, 'Choose a format (optional)' %></p>
+        <%= form.label :format, 'Choose a format (optional)' %>
         <%= form.select :format, @formats, { selected: 'standard (default)' }, prompt: "Format" %>
       </div>
     </div>
 
-    <p><%= form.label :job_description, 'Copy and paste the full job description and add any other relevant information' %></p>
+    <%= form.label :job_description, 'Copy and paste the full job description and add any other relevant information' %>
     <%= form.text_area :job_description, rows: 10, placeholder: 'Paste job description here' %>
 
-    <p><%= form.label :company_name, 'Company Name' %></p>
+    <%= form.label :company_name, 'Company Name' %>
     <%= form.text_field :company_name, placeholder: 'Enter company name here' %>
 
     <div class="form-btns">
