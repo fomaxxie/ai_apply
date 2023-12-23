@@ -1,45 +1,45 @@
 <div class="form-container">
   <%= form_with model: @profile, html: { class: 'profile-form' } do |f| %>
     <div class="profile-details">
-      <p><%= f.label :full_name, 'Your full name' %></p>
+      <%= f.label :full_name, 'Your full name' %>
       <%= f.text_field :full_name, required: true, placeholder: "John Doe" %>
-      <p><%= f.label :desired_position, 'Your desired position' %></p>
+      <%= f.label :desired_position, 'Your desired position' %>
       <%= f.text_field :desired_position, required: true, placeholder: "Web Developer" %>
-      <p><%= f.label :years_of_experience, 'Your years of experience' %></p>
+      <%= f.label :years_of_experience, 'Your years of experience' %>
       <%= f.text_field :years_of_experience, placeholder: "5" %>
-      <p><%= f.label :technical_skills, 'Add relevant technical skills (optional)' %></p>
+      <%= f.label :technical_skills, 'Add relevant technical skills (optional)' %>
       <%= f.text_field :technical_skill, placeholder: "Python, HTML, CSS, JavaScript" %>
-      <p><%= f.label :soft_skills, 'Add relevant soft skills (optional)' %></p>
+      <%= f.label :soft_skills, 'Add relevant soft skills (optional)' %>
       <%= f.text_field :soft_skills, placeholder: "Coordination, flexibility" %>
-      <p><%= f.label :details, 'Add more details about yourself which might be relevant. The more details the better.' %></p>
+      <%= f.label :details, 'Add more details about yourself which might be relevant. The more details the better.' %>
       <%= f.text_area :details, placeholder: "I am a self-learner who has been passionate about web development for the past 2 years. I have developed the apps like... ", rows: 12 %>
     </div>
 
-    <div class="contact-details">
+    <div class="contact-and-links">
       <div class="contact-details">
-        <p><%= f.label :phone_number, 'Phone number' %></p>
+        <%= f.label :phone_number, 'Phone number' %>
         <%= f.text_field :phone_number, placeholder: "Phone number" %>
-        <p><%= f.label :email, 'Email' %></p>
+        <%= f.label :email, 'Email' %>
         <%= f.text_field :email, placeholder: "email" %>
-        <p><%= f.label :location, 'Location' %></p>
+        <%= f.label :location, 'Location' %>
         <%= f.text_field :location, placeholder: "Location" %>
       </div>
 
       <div class="profile-links">
-        <p><%= f.label :website, 'Website (optional)' %></p>
+        <%= f.label :website, 'Website (optional)' %>
         <%= f.text_field :website %>
-        <p><%= f.label :linkedin, 'LinkedIn (optional)' %></p>
+        <%= f.label :linkedin, 'LinkedIn (optional)' %>
         <%= f.text_field :linkedin %>
-        <p><%= f.label :twitter, 'Twitter (X) (optional)' %></p>
+        <%= f.label :twitter, 'Twitter (X) (optional)' %>
         <%= f.text_field :twitter %>
-        <p><%= f.label :instagram, 'Instagram (optional)' %></p>
+        <%= f.label :instagram, 'Instagram (optional)' %>
         <%= f.text_field :instagram %>
-        <p><%= f.label :github, 'GitHub (optional)' %></p>
+        <%= f.label :github, 'GitHub (optional)' %>
         <%= f.text_field :github %>
       </div>
     </div>
     <div class="profile-buttons">
-      <p><%= f.button :submit, value: "Submit", class: "btn-signup" %></p>
+      <%= f.button :submit, value: "Submit", class: "btn-signup" %>
       <button><%= link_to "Cancel", dashboard_path, class: "btn-login" %></button>
       <% if action_name == 'edit' %>
         <button><%= link_to "Delete Profile", @profile, class: "btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></button>

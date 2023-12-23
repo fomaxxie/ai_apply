@@ -1,10 +1,20 @@
 .profile-form {
   display: grid;
   margin: 0 auto;
-  grid-gap: 0.5rem;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 0.6rem;
   font-family: 'Inter', sans-serif;
+  width: 80%;
 }
 
+.profile-form label {
+  display: block;
+  color: $white-primary;
+  font-family: 'bai Jamjuree', sans-serif;
+  padding: 0.8em 0;
+}
+
+/* Textareas */
 .profile-form input[type="text"],
 .profile-form textarea {
   background-color: $black-primary;
@@ -12,29 +22,40 @@
   border-radius: 5px;
   border: 1px solid $white-primary;
   padding: 6px;
-  width: 36rem;
+  width: 80%;
+  font-family: 'Inter', sans-serif;
 }
 
+/* Placeholder style */
 .profile-form input[type="text"]::placeholder,
 .profile-form textarea::placeholder {
   font-family: 'Inter', sans-serif;
 }
 
+/* Field margins */
 .field {
-  margin: 1em 0 1em 0;
+  margin: 1em 0;
 }
 
+/* Label styling */
 .field label {
   margin-bottom: 1em;
-  font-family: 'Inter', sans-serif;
+  font-family: 'bai Jamjuree', sans-serif;
 }
 
+/* First column */
 .profile-details {
   grid-column: 1;
 }
 
-.contact-details, .profile-links {
+/* Second column container */
+.contact-and-links {
   grid-column: 2;
+}
+
+/* Inside the second column */
+.contact-details {
+  margin-bottom: 3em;
 }
 
 .profile-buttons {
