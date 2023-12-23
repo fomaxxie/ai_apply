@@ -61,18 +61,21 @@
     dragDropText.classList.add('uploaded');
   }
 
-  // Optional: If you want to submit the form with JavaScript
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     var formData = new FormData(form);
-    // Add additional form processing if necessary
 
     fetch(form.action, {
       method: 'POST',
       body: formData,
     }).then(response => {
-      // Handle response
+      if (response.ok && response.redirected) {
+        window.location.href = response.url;
+      } else {
+        // Handle the case where the submission wasn't successful
+        alert('There was an error submitting the form.');
+      }
     });
   });
 });

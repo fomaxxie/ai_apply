@@ -3,8 +3,6 @@ class Bio < ApplicationRecord
 
   validates :cv_content, presence: true
 
-  # has_one_attached :cv_content
-
   def ai_bio_output
     prompt = "you are the best hiring manager that ever existed and you want to give the best
     advice on how to write a bio which will summarize the candidate's experience and skills from

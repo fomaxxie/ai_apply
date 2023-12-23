@@ -10,7 +10,7 @@
 
   <div class="letter-buttons">
     <button><%= link_to 'Save Bio', dashboard_path, class:"btn-signup" %></button>
-    <button><%= link_to "Delete", bio_path(@bio), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></button>
+    <button><%= link_to "Delete", bio_path(@bio), class:"btn-login", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></button>
     <button id="copy-button" class="btn-login">Copy to Clipboard</button>
   </div>
 </div>

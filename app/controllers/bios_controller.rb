@@ -26,22 +26,6 @@ class BiosController < ApplicationController
     end
   end
 
-  def update
-    @bio = Bio.find(params[:id])
-
-    if params[:bio][:cv_content].present?
-      @bio.cv_content = extract_text_from_pdf(params[:bio][:cv_content])
-    end
-
-    @bio.bio_output = @bio.ai_bio_output
-
-    if @bio.update(bio_params)
-      redirect_to @bio, notice: 'Bio was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @bio.destroy
     redirect_to dashboard_path, notice: 'Bio was successfully deleted.'
