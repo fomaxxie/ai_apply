@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :profiles
   has_many :letters, through: :profiles
   has_many :bios, through: :profiles
+  has_one :subscription
 end

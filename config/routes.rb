@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
   resources :profiles, except: [:index]
   resources :letters, except: [:index]
-  resources :bios
-  resources :charges
+  resources :bios, except: [:index]
+  resources :subscriptions
 end

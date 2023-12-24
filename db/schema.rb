@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_12_195607) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_24_104709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_195607) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "status"
+    t.string "plan"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "stripe_subscription_id"
+    t.datetime "last_payment_date"
+    t.datetime "next_payment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -71,4 +85,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_195607) do
   add_foreign_key "bios", "profiles"
   add_foreign_key "letters", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "subscriptions", "users"
 end

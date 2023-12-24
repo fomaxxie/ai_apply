@@ -12,11 +12,17 @@ class LettersController < ApplicationController
 
   def create
     @letter = Letter.new(letter_params)
-    @letter.letter_output = @letter.ai_letter_output
-    if @letter.save
-      redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
+    @letter.user = current_user
+
+    if current_user.can_create_letter?
+      @letter.letter_output = @letter.ai_letter_output
+      if @letter.save
+        redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_subscription_path, alert: 'You have reached the limit of free letters. Please subscribe for unlimited access.'
     end
   end
 

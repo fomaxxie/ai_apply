@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  status: MyString
+  plan: MyString
+  start_date: 2023-12-24 11:47:09
+  end_date: 2023-12-24 11:47:09
+  stripe_subscription_id: MyString
+  last_payment_date: 2023-12-24 11:47:09
+  next_payment_date: 2023-12-24 11:47:09
+
+two:
+  user: two
+  status: MyString
+  plan: MyString
+  start_date: 2023-12-24 11:47:09
+  end_date: 2023-12-24 11:47:09
+  stripe_subscription_id: MyString
+  last_payment_date: 2023-12-24 11:47:09
+  next_payment_date: 2023-12-24 11:47:09
