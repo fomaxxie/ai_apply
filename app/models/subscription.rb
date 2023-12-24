@@ -4,5 +4,4 @@ class Subscription < ApplicationRecord
   validates :plan, presence: true
 
   STATUS = ["inactive", "active", "cancelled", "unpaid", "incomplete"].freeze
-
 end
