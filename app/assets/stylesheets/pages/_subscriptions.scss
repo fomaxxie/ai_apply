@@ -1,0 +1,21 @@
+.subscription-card {
+  width: 25em;
+  padding: 1em;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  background-color: $black-primary;
+  margin: auto;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.subscription-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

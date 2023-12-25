@@ -17,6 +17,7 @@ class LettersController < ApplicationController
     if current_user.can_create_letter?
       @letter.letter_output = @letter.ai_letter_output
       if @letter.save
+        current_user.increment!(:letters_count)
         redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
       else
         render :new, status: :unprocessable_entity
@@ -37,13 +38,18 @@ class LettersController < ApplicationController
 
   def update
     @letter = Letter.find(params[:id])
-    @letter.letter_output = @letter.ai_letter_output
 
-    if @letter.update(letter_params)
-      redirect_to @letter, notice: 'Letter was successfully updated.'
+    if current_user.can_create_letter? || @letter.user_id == current_user.id
+      @letter.letter_output = @letter.ai_letter_output
+
+      if @letter.update(letter_params)
+        redirect_to @letter, notice: 'Letter was successfully updated.'
+      else
+        @formats = Letter::FORMATS
+        render :edit, status: :unprocessable_entity
+      end
     else
-      @formats = Letter::FORMATS
-      render :edit, status: :unprocessable_entity
+      redirect_to new_subscription_path, alert: 'You have reached the limit of free letters and cannot update this letter. Please subscribe for unlimited access.'
     end
   end
 

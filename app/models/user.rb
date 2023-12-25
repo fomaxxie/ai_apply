@@ -8,4 +8,18 @@ class User < ApplicationRecord
   has_many :letters, through: :profiles
   has_many :bios, through: :profiles
   has_one :subscription
+
+  def can_create_letter?
+    subscribed? || letters_count < 2
+  end
+
+  def can_create_bio?
+    subscribed? || bios_count < 1
+  end
+
+  private
+
+  def subscribed?
+    subscription.present? && subscription.status == "active"
+  end
 end

@@ -13,16 +13,21 @@ class BiosController < ApplicationController
   def create
     @bio = Bio.new(bio_params)
 
-    if params[:bio][:cv_content].present?
-      @bio.cv_content = extract_text_from_pdf(params[:bio][:cv_content])
-    end
+    if current_user.can_create_bio?
+      if params[:bio][:cv_content].present?
+        @bio.cv_content = extract_text_from_pdf(params[:bio][:cv_content])
+      end
 
-    @bio.bio_output = @bio.ai_bio_output
+      @bio.bio_output = @bio.ai_bio_output
 
-    if @bio.save
-      redirect_to bio_path(@bio), notice: 'Bio was successfully created.'
+      if @bio.save
+        current_user.increment!(:bios_count)
+        redirect_to bio_path(@bio), notice: 'Bio was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_subscription_path, alert: 'You have reached the limit of free bios. Please subscribe for unlimited access.'
     end
   end
 
