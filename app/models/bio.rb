@@ -1,4 +1,5 @@
 class Bio < ApplicationRecord
+  belongs_to :user
   belongs_to :profile
 
   validates :cv_content, presence: true

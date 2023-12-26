@@ -1,13 +1,31 @@
 <div class="container">
   <h1>Subsribe and get unlimited access</h1>
-    <div class="subscription-card">
-      <div class="inner-container">
-        <div class="subscription-price">
-          <h2>$12.99</h2>
-          <h3>   / m</h3>
+    <div class="subscriptions">
+      <div class="subscription-card-2">
+        <p>Free</p>
+        <div class="inner-container">
+          <div class="subscription-price">
+            <h2>$0</h2>
+            <h3>/ mo</h3>
+          </div>
+          <div class="free-features">
+            <p>✓ Generate 1 bio</p>
+            <p>✓ Generate 2 letters</p>
+          </div>
+          <button><%= link_to 'Use for Free', dashboard_path, class:"btn-login" %></button>
         </div>
-        <p>Generate unlimited letters and bios</p>
-        <button class="btn-login">Subscribe</button>
+      </div>
+
+      <div class="subscription-card-1">
+        <p>Pro</p>
+        <div class="inner-container">
+          <div class="subscription-price">
+            <h2>$7.99</h2>
+            <h3>/ mo</h3>
+          </div>
+          <h2>Generate unlimited letters and bios</h2>
+          <button class="btn-signup">Subscribe</button>
+        </div>
+      </div>
     </div>
-  </div>
 </div>

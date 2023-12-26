@@ -1,10 +1,25 @@
-.subscription-card {
+.subscriptions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.subscription-card-1 {
   width: 25em;
-  padding: 1em;
+  padding: 2em 1em;
   border-radius: 5px;
   border: 1px solid $white-primary;
   background-color: $black-primary;
-  margin: auto;
+}
+
+.subscription-card-1:hover {
+  border: 1px solid $white-purple;
+}
+
+.subscription-card-1 p {
+  font-size: 1.2rem;
+  margin: 0.5em 1em;
 }
 
 .inner-container {
@@ -14,8 +29,36 @@
   align-items: center;
 }
 
+.inner-container h2 {
+  text-align: center;
+  margin: 1em auto;
+}
+
 .subscription-price {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.subscription-price h2 {
+  font-size: 4em;
+  margin: 0;
+}
+
+.subscription-card-2 {
+  width: 25em;
+  padding: 2em 1em;
+  border-radius: 5px;
+  border: 1px solid $white-primary;
+  background-color: $black-tertiary;
+}
+
+.subscription-card-2 p {
+  font-size: 1rem;
+  margin: 0.5em 1em;
+}
+
+.free-features {
+  margin: 1em auto;
 }

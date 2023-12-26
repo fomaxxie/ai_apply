@@ -3,7 +3,7 @@ class BiosController < ApplicationController
   before_action :set_bio, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bios = Bio.all
+    @bios = current_user.bios
   end
 
   def new
@@ -45,7 +45,7 @@ class BiosController < ApplicationController
   end
 
   def set_bio
-    @bio = Bio.find(params[:id])
+    @bio = current_user.bios.find(params[:id])
   end
 
   def set_profiles

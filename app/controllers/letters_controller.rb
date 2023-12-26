@@ -1,8 +1,9 @@
 class LettersController < ApplicationController
   before_action :set_profiles, only: [:new, :edit, :create, :update]
+  before_action :set_letter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @letters = Letter.all
+    @letters = current_user.letters
   end
 
   def new
@@ -11,7 +12,7 @@ class LettersController < ApplicationController
   end
 
   def create
-    @letter = Letter.new(letter_params)
+    @letter = current_user.letters.new(letter_params)
     @letter.user = current_user
 
     if current_user.can_create_letter?
@@ -28,17 +29,13 @@ class LettersController < ApplicationController
   end
 
   def show
-    @letter = Letter.find(params[:id])
   end
 
   def edit
-    @letter = Letter.find(params[:id])
     @formats = Letter::FORMATS
   end
 
   def update
-    @letter = Letter.find(params[:id])
-
     if current_user.can_create_letter? || @letter.user_id == current_user.id
       @letter.letter_output = @letter.ai_letter_output
 
@@ -54,7 +51,6 @@ class LettersController < ApplicationController
   end
 
   def destroy
-    @letter = Letter.find(params[:id])
     @letter.destroy
     redirect_to dashboard_path, notice: 'Letter was successfully deleted.'
   rescue ActiveRecord::RecordNotFound
@@ -65,6 +61,10 @@ class LettersController < ApplicationController
 
   def letter_params
     params.require(:letter).permit(:profile_id, :format, :job_description, :company_name, :letter_output)
+  end
+
+  def set_letter
+    @letter = current_user.letters.find(params[:id])
   end
 
   def set_profiles

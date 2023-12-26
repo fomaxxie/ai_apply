@@ -1,4 +1,5 @@
 class Letter < ApplicationRecord
+  belongs_to :user
   belongs_to :profile
 
   FORMATS = ['short', 'standard (default)', 'long'].freeze
@@ -46,7 +47,7 @@ class Letter < ApplicationRecord
   end
 
   private
-  
+
   def seniority
     if profile.years_of_experience < 3
       "junior"
