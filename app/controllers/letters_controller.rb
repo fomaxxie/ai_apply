@@ -3,7 +3,7 @@ class LettersController < ApplicationController
   before_action :set_letter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @letters = current_user.letters
+    @letters = Letter.all
   end
 
   def new
@@ -12,8 +12,7 @@ class LettersController < ApplicationController
   end
 
   def create
-    @letter = current_user.letters.new(letter_params)
-    @letter.user = current_user
+    @letter = Letter.new(letter_params)
 
     if current_user.can_create_letter?
       @letter.letter_output = @letter.ai_letter_output
