@@ -63,7 +63,7 @@ class LettersController < ApplicationController
   end
 
   def set_letter
-    @letter = current_user.letters.find(params[:id])
+    @letter = Letter.find(params[:id])
   end
 
   def set_profiles

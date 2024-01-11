@@ -1,5 +1,5 @@
 class Bio < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   belongs_to :profile
 
   validates :cv_content, presence: true
@@ -23,7 +23,7 @@ class Bio < ApplicationRecord
       })
 
     bio_output = response.dig("choices", 0, "message", "content")
-    bio_output
+    return bio_output
   end
 
 end

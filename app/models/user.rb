@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one :subscription
 
   def can_create_letter?
-    subscribed? || letters_count < 2
+    subscribed? || letters_count < 3
   end
 
   def can_create_bio?

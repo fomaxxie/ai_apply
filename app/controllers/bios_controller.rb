@@ -45,7 +45,7 @@ class BiosController < ApplicationController
   end
 
   def set_bio
-    @bio = current_user.bios.find(params[:id])
+    @bio = Bio.find(params[:id])
   end
 
   def set_profiles
