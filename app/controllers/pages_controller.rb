@@ -5,8 +5,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @profiles = Profile.all
-    @letters = Letter.all
-    @bios = Bio.all
+    @profiles = current_user.profiles
+    @letters = current_user.letters
+    @bios = current_user.bios
   end
 end

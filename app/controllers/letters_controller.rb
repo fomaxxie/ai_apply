@@ -13,6 +13,7 @@ class LettersController < ApplicationController
 
   def create
     @letter = Letter.new(letter_params)
+    @formats = Letter::FORMATS
 
     if current_user.can_create_letter?
       @letter.letter_output = @letter.ai_letter_output

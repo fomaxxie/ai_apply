@@ -17,24 +17,24 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def edit
-    # Edit subscription details
-  end
+  # def edit
+  #   # Edit subscription details
+  # end
 
-  def update
-    if @subscription.update(subscription_params)
-      # Update subscription details, possibly updating payment details
-      redirect_to root_path, notice: "Subscription updated successfully."
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @subscription.update(subscription_params)
+  #     # Update subscription details, possibly updating payment details
+  #     redirect_to root_path, notice: "Subscription updated successfully."
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    # Cancel the subscription
-    @subscription.cancel! # You'll define this method in your model
-    redirect_to root_path, notice: "Subscription canceled successfully."
-  end
+  # def destroy
+  #   # Cancel the subscription
+  #   @subscription.cancel! # You'll define this method in your model
+  #   redirect_to root_path, notice: "Subscription canceled successfully."
+  # end
 
   private
 
