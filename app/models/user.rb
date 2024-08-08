@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def can_create_bio?
-    subscribed? || bios_count < 1
+    subscribed? || bios_count < 3
   end
 
   private

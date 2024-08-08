@@ -49,7 +49,7 @@ class BiosController < ApplicationController
   end
 
   def set_profiles
-    @profiles = Profile.all
+    @profiles = current_user.profiles
   end
 
   def extract_text_from_pdf(pdf_file)

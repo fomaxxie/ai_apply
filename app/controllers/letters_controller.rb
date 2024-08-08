@@ -17,10 +17,12 @@ class LettersController < ApplicationController
 
     if current_user.can_create_letter?
       @letter.letter_output = @letter.ai_letter_output
-      if @letter.save
+      if @profiles.exists?(@letter.profile_id) && @letter.save
         current_user.increment!(:letters_count)
         redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
       else
+        Rails.logger.debug @letter.errors.full_messages
+        puts @letter.errors.full_messages
         render :new, status: :unprocessable_entity
       end
     else
@@ -64,10 +66,10 @@ class LettersController < ApplicationController
   end
 
   def set_letter
-    @letter = Letter.find(params[:id])
+    @letter = current_user.letters.find(params[:id])
   end
 
   def set_profiles
-    @profiles = Profile.all
+    @profiles = current_user.profiles
   end
 end
