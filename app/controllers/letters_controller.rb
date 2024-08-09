@@ -21,8 +21,6 @@ class LettersController < ApplicationController
         current_user.increment!(:letters_count)
         redirect_to letter_path(@letter), notice: 'Letter was successfully created.'
       else
-        Rails.logger.debug @letter.errors.full_messages
-        puts @letter.errors.full_messages
         render :new, status: :unprocessable_entity
       end
     else
@@ -38,14 +36,18 @@ class LettersController < ApplicationController
   end
 
   def update
-    if current_user.can_create_letter? || @letter.user_id == current_user.id
-      @letter.letter_output = @letter.ai_letter_output
-
-      if @letter.update(letter_params)
-        redirect_to @letter, notice: 'Letter was successfully updated.'
+    if current_user.can_create_letter? || @letter.profile.user_id == current_user.id
+      if @letter.company_name != letter_params[:company_name] && !current_user.can_create_letter?
+        redirect_to new_subscription_path, alert: 'You have reached the limit for free letters and cannot change the company name. Please subscribe for unlimited access.'
       else
-        @formats = Letter::FORMATS
-        render :edit, status: :unprocessable_entity
+        @letter.letter_output = @letter.ai_letter_output
+
+        if @letter.update(letter_params)
+          redirect_to @letter, notice: 'Letter was successfully updated.'
+        else
+          @formats = Letter::FORMATS
+          render :edit, status: :unprocessable_entity
+        end
       end
     else
       redirect_to new_subscription_path, alert: 'You have reached the limit of free letters and cannot update this letter. Please subscribe for unlimited access.'

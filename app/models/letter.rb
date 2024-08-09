@@ -10,28 +10,42 @@ class Letter < ApplicationRecord
 
 
   def ai_letter_output
-    prompt = "you are the best hiring manager that ever existed and you want to give the best
-    possible advice on how to land a dream job as a #{profile.desired_position}
-    #{company_name.present? ? "at #{company_name}" : ""}. You know I
-    #{profile.years_of_experience < 3 ? "#{seniority}" : "with #{profile.years_of_experience} years of experience in this field"}
-    in #{profile.desired_position} but by writing a perfect cover letter you will make me a top candidate.
+    prompt = "
+      You are the most skilled hiring manager ever, and your goal is to craft the perfect cover letter for a
+      candidate applying for a #{profile.desired_position} position #{company_name.present? ? "at #{company_name}" : ""}.
 
-    #{profile.details.present? ? "You should consider the following details: #{profile.details}" : ""}
-    #{profile.soft_skills.present? ? "I have the following set of soft skills: #{profile.soft_skills}" : ""}
-    #{profile.technical_skills.present? ? "and technical skills: #{profile.technical_skills}" : ""}
-    Organically explain that even if I don't have all the required skills, I am very flexible to learn new ones.
+      The candidate has #{profile.years_of_experience} years of experience in #{profile.desired_position}.
+      Their experience level is best described as #{seniority}. Your task is to present them as an ideal candidate,
+      emphasizing their strengths and relevant skills.
 
-    Now considering information about me and the job description below, help me write a perfect cover letter.
+      Please STRICTLY follow these specific instructions for the letter length:
+      #{format == "short" ? "SHORT. Which means the letter should be concise, roughly half a page of A4." :
+        format == "standard (default)" ? "STANDARD. Which means the letter should be detailed enough to fill an entire A4 page." :
+        "LONG. The long format should be comprehensive and exceed one full A4 page. Don't make me repeat myself.
+        Long means long. At least two pages of A4."}
 
-    Very importantly, just give a generated letter without any headers like name, email, address, date, etc, don't add any additional text like 'here is your text', etc.
-    The output should be straightforward letter starting with either 'Dear' name of hiring manager if exists or just 'Dear Sir or Madam' if not.
+      Here are some key details to consider while writing the letter:
+      #{profile.details.present? ? "Candidate's background: #{profile.details}" : ""}
+      #{profile.soft_skills.present? ? "Key soft skills: #{profile.soft_skills}" : ""}
+      #{profile.technical_skills.present? ? "Technical skills: #{profile.technical_skills}" : ""}
+      Highlight how these skills make them uniquely qualified for the role.
 
-    Here is a job description you should consider: #{job_description}
-    The format of the letter should be #{format == "standard (default)" ? "standard, which means it should be long
-    enough to fill A4 format" : "#{format}"}.
+      The cover letter should make a compelling case for why this candidate is a top choice for the position.
+      If they lack certain skills, explain how their flexibility and eagerness to learn make up for this.
 
-    You can consider adding the following information about me:
-    #{profile.full_name.present? ? "full name: #{profile.full_name}" : ""}"
+      Focus on crafting a narrative that ties the candidate's experience and skills to the job description provided below.
+
+      Please generate a letter that starts with an appropriate salutation ('Dear [Name]' if known, or 'Dear Sir or Madam').
+      Do not include any headers (like name, email, address, etc.) and avoid any additional textmlike 'here is your text'
+      or explanations.
+
+      The letter should be #{format == "standard (default)" ? "a standard format, appropriate for filling an A4 page" :
+      "#{format}"}.
+
+      Job Description: #{job_description}
+
+      You can include the following additional information about the candidate if relevant:
+      #{profile.full_name.present? ? "Full name: #{profile.full_name}" : ""}"
 
 
     client = OpenAI::Client.new
