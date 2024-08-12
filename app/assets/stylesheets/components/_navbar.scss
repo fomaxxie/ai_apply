@@ -20,3 +20,14 @@
   display: flex;
   gap: 1rem;
 }
+
+.pro_badge {
+  background-image: $gradient-secondary;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -20,6 +20,6 @@ class User < ApplicationRecord
   private
 
   def subscribed?
-    subscription.present? && subscription.status == "active"
+    subscription.present? && subscription.active?
   end
 end

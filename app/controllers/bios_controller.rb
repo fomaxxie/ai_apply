@@ -10,7 +10,7 @@ class BiosController < ApplicationController
     if current_user.can_create_letter?
       @bio = Bio.new
     else
-      redirect_to new_subscription_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
+      redirect_to subscription_page_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
     end
   end
 
@@ -31,7 +31,7 @@ class BiosController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      redirect_to new_subscription_path, alert: 'You have reached the limit of free bios. Please subscribe for unlimited access.'
+      redirect_to subscription_page_path, alert: 'You have reached the limit of free bios. Please subscribe for unlimited access.'
     end
   end
 

@@ -11,7 +11,7 @@ class LettersController < ApplicationController
       @letter = Letter.new
       @formats = Letter::FORMATS
     else
-      redirect_to new_subscription_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
+      redirect_to subscription_page_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
     end
   end
 
@@ -28,7 +28,7 @@ class LettersController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      redirect_to new_subscription_path, alert: 'You have reached the limit of free letters. Please subscribe for unlimited access.'
+      redirect_to subscription_page_path, alert: 'You have reached the limit of free letters. Please subscribe for unlimited access.'
     end
   end
 
@@ -42,7 +42,7 @@ class LettersController < ApplicationController
   def update
     if current_user.can_create_letter? || @letter.profile.user_id == current_user.id
       if @letter.company_name != letter_params[:company_name] && !current_user.can_create_letter?
-        redirect_to new_subscription_path, alert: 'You have reached the limit for free letters and cannot change the company name. Please subscribe for unlimited access.'
+        redirect_to subscription_page_path, alert: 'You have reached the limit for free letters and cannot change the company name. Please subscribe for unlimited access.'
       else
         @letter.letter_output = @letter.ai_letter_output
 
@@ -54,7 +54,7 @@ class LettersController < ApplicationController
         end
       end
     else
-      redirect_to new_subscription_path, alert: 'You have reached the limit of free letters and cannot update this letter. Please subscribe for unlimited access.'
+      redirect_to subscription_page_path, alert: 'You have reached the limit of free letters and cannot update this letter. Please subscribe for unlimited access.'
     end
   end
 
