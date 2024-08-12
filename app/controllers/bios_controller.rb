@@ -7,7 +7,11 @@ class BiosController < ApplicationController
   end
 
   def new
-    @bio = Bio.new
+    if current_user.can_create_letter?
+      @bio = Bio.new
+    else
+      redirect_to new_subscription_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
+    end
   end
 
   def create

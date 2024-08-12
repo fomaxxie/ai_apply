@@ -7,8 +7,12 @@ class LettersController < ApplicationController
   end
 
   def new
-    @letter = Letter.new
-    @formats = Letter::FORMATS
+    if current_user.can_create_letter?
+      @letter = Letter.new
+      @formats = Letter::FORMATS
+    else
+      redirect_to new_subscription_path, alert: 'You have reached your limit of free letters. Please upgrade to Lifetime Access to continue generating letters.'
+    end
   end
 
   def create

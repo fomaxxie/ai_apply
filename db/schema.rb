@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_25_192306) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_12_112242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,15 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_25_192306) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "status"
-    t.string "plan"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "stripe_subscription_id"
-    t.datetime "last_payment_date"
-    t.datetime "next_payment_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: false
+    t.datetime "payment_date"
+    t.string "transaction_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
