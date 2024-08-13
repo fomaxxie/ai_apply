@@ -18,28 +18,39 @@
 <!--Copy to clipboard JS script-->
 
 <script>
+  // Define the handler function globally to ensure consistent reference
+  function handleCopyClick() {
+    const contentToCopy = document.getElementById('data-clipboard-text');
+    if (!contentToCopy) return;
+
+    const range = document.createRange();
+    range.selectNode(contentToCopy);
+    window.getSelection().removeAllRanges(); // Clear current selection
+    window.getSelection().addRange(range); // Select the text content
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        alert('Text copied to clipboard!');
+      } else {
+        alert('Failed to copy text.');
+      }
+    } catch (err) {
+      alert('Oops, unable to copy');
+    }
+
+    window.getSelection().removeAllRanges(); // Remove selection after copy
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     const copyButton = document.getElementById('copy-button');
-    const contentToCopy = document.getElementById('data-clipboard-text');
 
-    copyButton.addEventListener('click', function () {
-      const range = document.createRange();
-      range.selectNode(contentToCopy);
-      window.getSelection().removeAllRanges(); // Clear current selection
-      window.getSelection().addRange(range); // Select the text content
-
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          alert('Text copied to clipboard!');
-        } else {
-          alert('Failed to copy text.');
-        }
-      } catch (err) {
-        alert('Oops, unable to copy');
-      }
-
-      window.getSelection().removeAllRanges(); // Remove selection after copy
-    });
+    if (copyButton) {
+      // Remove any existing event listener using the same function reference
+      copyButton.removeEventListener('click', handleCopyClick);
+      // Add the event listener with the defined handler
+      copyButton.addEventListener('click', handleCopyClick);
+    }
   });
 </script>
+
