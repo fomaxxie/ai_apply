@@ -81,6 +81,5 @@ test:
 #
 production:
   <<: *default
-  database: ai_apply_production
-  username: ai_apply
-  password: <%= ENV["AI_APPLY_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
