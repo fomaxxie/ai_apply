@@ -2,26 +2,33 @@
   <div class="navbar_logo">
     <%= link_to image_tag('logos/logo.png', alt: 'AiApply Logo'), root_path %>
   </div>
-  <div class="navbar_links">
+
+  <% if user_signed_in? %>
+    <!-- Hamburger Menu for Mobile -->
+    <input type="checkbox" id="navbar-toggle" class="navbar-toggle">
+    <label for="navbar-toggle" class="navbar-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  <% end %>
+
+  <div class="navbar_links <%= 'navbar_signed_in' if user_signed_in? %>">
     <% if user_signed_in? %>
       <p><%= link_to 'Home', root_path %></p>
       <p><%= link_to 'Dashboard', dashboard_path %></p>
+      <div class="user_email">
+        <p><%= current_user.email %></p>
+        <% if current_user.subscription&.active? %>
+          <span class="pro_badge">Pro Plan</span>
+        <% else %>
+          <button><%= link_to 'Upgrade', subscription_page_path, class: 'btn-signup' %></button>
+        <% end %>
+        <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-login" %></button>
+      </div>
     <% else %>
       <button><%= link_to 'Login', new_user_session_path, class: 'btn-login' %></button>
       <p><%= link_to 'Sign Up', new_user_registration_path, class: 'btn-signup' %></p>
     <% end %>
   </div>
-  <% if user_signed_in? %>
-  <div class="user_email">
-    <p><%= current_user.email %><p>
-    <% if current_user.subscription&.active? %>
-      <!-- Show Pro Plan Badge -->
-      <span class="pro_badge">Pro Plan</span>
-    <% else %>
-      <!-- Show Upgrade Button -->
-      <button><%= link_to 'Upgrade', subscription_page_path, class: 'btn-signup' %></button>
-    <% end %>
-    <button><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-login" %></button>
-  </div>
-  <% end %>
 </div>

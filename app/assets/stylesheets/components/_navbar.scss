@@ -3,31 +3,113 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  background-color: transparent;
+
+  .navbar_logo img {
+    width: 12rem;
+  }
+
+  .navbar_links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    /* Only apply responsive styles when the screen size is small */
+    @media (max-width: 768px) {
+      &.navbar_signed_in {
+        display: none; /* Hide the original layout for small screens */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 1.5rem; /* Spacing between items */
+      }
+    }
+  }
+
+  .user_email {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    /* Apply vertical stacking only on small screens */
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  .pro_badge {
+    background-image: $gradient-secondary;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .navbar-toggle-label {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: none;
+    padding: 0;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 0.25rem;
+      background: #646464;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    /* Only show the hamburger icon for logged-in users on small screens */
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  /* When the menu is toggled */
+  #navbar-toggle:checked + .navbar-toggle-label + .navbar_links.navbar_signed_in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Spacing between items when toggled */
+  }
 }
 
-.navbar_links {
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  gap: 5rem;
-}
+/* Apply vertical stacking only for small screens */
+@media (max-width: 768px) {
+  .navbar_links {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 1.5rem; /* Spacing between items */
+  }
 
-.navbar_logo img {
-  width: 12rem;
-}
+  .navbar_links p,
+  .navbar_links .user_email {
+    margin: 0;
+    padding: 0.5rem 0;
+  }
 
-.user_email {
-  display: flex;
-  gap: 1rem;
-}
-
-.pro_badge {
-  background-image: $gradient-secondary;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 7px;
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
+  .btn-login, .btn-signup {
+    width: 100%;
+    padding: 0.75rem;
+  }
 }
